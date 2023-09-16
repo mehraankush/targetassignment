@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { Card } from "@/components/Card";
+import  Graph  from "@/components/Chart";
 import axios from 'axios'
 
 
@@ -39,6 +40,9 @@ const page = () => {
             <Card title={item.title} value={item.value}/>
         ))
       }
+      </div>
+      <div className="bg-white p-2 ">
+          <Graph/>
       </div>
     </div>
   )
