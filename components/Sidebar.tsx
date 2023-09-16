@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Montserrat } from 'next/font/google'
 import { usePathname } from 'next/navigation'
 
-import { Code, ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon } from "lucide-react";
+import { Tags,UserCircle2, LayoutDashboard, MessageSquare, Settings, CalendarClock } from "lucide-react";
 
 const montserrat = Montserrat({weight:'600',subsets:['latin']}) 
 const routes = [
@@ -13,51 +13,38 @@ const routes = [
   lable:"Dashboard",
   icon:LayoutDashboard,
   href:"/dashboard",
-  color:"text-sky-500"
   },
   {
   lable:"Transactions",
-  icon:MessageSquare,
+  icon:Tags,
   href:"/conversation",
-  color:"text-violet-500"
   },
   {
   lable:"Schedules",
-  icon:ImageIcon,
+  icon:CalendarClock,
   href:"/image",
-  color:"text-pink-700"
   },
   {
   lable:"Users",
-  icon:VideoIcon,
+  icon:UserCircle2,
   href:"/video",
-  color:"text-orange-700"
   },
   {
   lable:"Settings",
-  icon:Music,
+  icon:Settings,
   href:"/music",
-  color:"text-emerald-500"
   }
 ];
-
-interface SideBarProps{
- getCount:number;
- isPro:boolean;
-}
 
 const SideBar = () => {
 
 
   const pathname = usePathname();
   return (
-    <div className="my-2 py-4  md:w-60 flex flex-col h-4/5 text-white bg-black rounded"> 
+    <div className="my-5 py-4 ml-10 md:w-60 flex flex-col justify-between md:h-[944px] text-white bg-black rounded-[30px]"> 
        <div className="px-3 py-2 flex-1">
-          <Link href='/dashboard' className="flex items-center pl-3 mb-14">
-              <div className="relative w-8 h-8 mr-4">
-                  <Image src='/logoai.png' alt="Logo" height={20} width={20}/>
-              </div>
-              <h1 className={`text-2xl font-bold ${montserrat.className}`}>JustAsk</h1>
+          <Link href='/dashboard' className="flex items-center pl-3 mb-14 ">
+              <h1 className={`text-4xl  font-bold`}>Target.</h1>
           </Link>
           <div className="space-y-1">
              {
@@ -70,15 +57,16 @@ const SideBar = () => {
                   }
                 >
                  <div className="flex items-center flex-1">
-                     <item.icon className={`h-5 w-5 mr-5${item.color}`}/>
+                     <item.icon className={`h-5 w-5 mr-3`}/>
                      {item.lable}
                  </div>
                 </Link>
               ))
              }
           </div>
-          <div>
-            
+          <div className="mt-[13rem] p-2">
+             <p className="mb-2">Help</p>
+             <p>Contact Us</p>
           </div>
        </div>
     </div>
