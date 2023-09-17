@@ -12,7 +12,7 @@ export default function Home() {
          <div className=' md:w-[385px]'>
             <div>
                <h1 className='text-4xl font-bold'>Sign In</h1>
-               <p className='text-base'>Sign in to your account</p>
+               <p className='text-sm'>Sign in to your account</p>
             </div>
 
             <div className='flex justify-between mt-3 mb-3'>
@@ -20,19 +20,20 @@ export default function Home() {
                <p>Google </p> 
             </div>
 
-            <div className='flex flex-col bg-[#fff] p-4 rounded'>
-               <div className='flex flex-col'>
-                  <label>Email address</label>
-                  <input className='focus:outline-none rounded p-2 bg-[#F5F5F5]' type="email" />
+            <div className='flex flex-col bg-[#fff] p-4 rounded-xl'>
+               <div className='flex flex-col p-4'>
+                  <label className='font-medium'>Email address</label>
+                  <input className='focus:outline-none rounded-xl p-2 bg-[#F5F5F5]' type="email" />
                </div>
-               <div className='flex flex-col mt-3'>
-                  <label>Password</label>
-                  <input  className='focus:outline-none rounded p-2 bg-[#EAEAEA]' type="password" />
+               <div className='flex flex-col p-4'>
+                  <label  className='font-medium'>Password</label>
+                  <input  className='focus:outline-none rounded-xl p-2 bg-[#EAEAEA]' type="password" />
                </div>
-               <div className='mt-2'>
-                  <a className='text-blue-500 cursor-pointer'>Forgot password?</a>
+               <div className=' flex flex-col p-4'>
+                  <a className='text-blue-500 cursor-pointer text-sm'>Forgot password?</a>
+                 <button className='p-2 bg-black text-white rounded mt-4'>Sign In</button>
                </div>
-               <button className='p-2 bg-black text-white rounded mt-4'>Sign In</button>
+               
             </div>
 
             <div className='mt-7 text-center'>

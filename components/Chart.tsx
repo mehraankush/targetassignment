@@ -42,16 +42,16 @@ const Graph = () => {
       ]
 
   return (
-    <div className="mt-5">
-        <LineChart width={1000} height={250} data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="5 5" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        {/* <Legend /> */}
-        <Line type="monotone" dataKey="User" stroke="#8884d8" />
-        <Line type="monotone" dataKey="Guest" stroke="#82ca9d" />
+    <div className="p-4">
+        <LineChart width={1000} height={190} data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+          <CartesianGrid strokeDasharray="5 5" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          {/* <Legend /> */}
+          <Line type="monotone" dataKey="User" stroke="#8884d8" />
+          <Line type="monotone" dataKey="Guest" stroke="#82ca9d" />
     </LineChart>
     </div>
   );

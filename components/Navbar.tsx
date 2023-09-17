@@ -5,7 +5,7 @@ import axios from 'axios';
 const Navbar = () => {
 
   return (
-    <div  className='flex text-black '>
+    <div  className='flex text-black mx-[70px]'>
       <div className='flex w-[100%] mt-5 justify-between text-black p-2'>
         <div>
           <h1 className='font-bold text-2xl'>Dashboard</h1>
