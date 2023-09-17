@@ -1,23 +1,41 @@
+"use client"
+import { signIn } from 'next-auth/react'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen">
 
-       <div className=' flex justify-center items-center w-2/5 bg-black'>
-          <h1 className='font-sans text-7xl'>Target.</h1>
+   const {data:session} = useSession();
+   const router = useRouter();
+   if(session?.user){
+      router.push('/dashboard')
+   }
+
+  return (
+    <main className="flex md:flex-row flex-col min-h-screen bg-[#F5F5F5]">
+
+       <div className=' flex p-4 md:p-0 md:justify-center items-center md:w-2/5 bg-black'>
+          <h1 className='font-sans text-2xl md:text-7xl  text-white '>Target.</h1>
        </div>
 
-       <div className='w-3/5 flex flex-col justify-center items-center bg-[#F5F5F5] text-black'>
+       <div className='md:w-3/5 flex mt-[100px]  md:mt-[0px] flex-col justify-center items-center bg-[#F5F5F5] text-black'>
          <div className=' md:w-[385px]'>
             <div>
                <h1 className='text-4xl font-bold'>Sign In</h1>
                <p className='text-sm'>Sign in to your account</p>
             </div>
 
-            <div className='flex justify-between mt-3 mb-3'>
-               <p>Google </p> 
-               <p>Google </p> 
+            <div className='flex flex-col gap-5 md:gap-0 md:flex-row justify-between mt-3 mb-3'>
+               <div className='bg-white p-2 rounded-lg flex gap-2 cursor-pointer' onClick={()=>signIn('google')}>
+                  <Image src='/google.png' alt='google' width={22} height={10}/>
+                  <p className='font-semibold md:font-normal'>sign in with Google </p> 
+               </div>
+               <div className='bg-white p-2 rounded-lg flex gap-2 cursor-pointer'>
+                  <Image src='/apple.png' alt='apple'  width={20} height={10}/>
+                  <p className='font-semibold md:font-normal'>sign in with apple </p> 
+               </div>
             </div>
 
             <div className='flex flex-col bg-[#fff] p-4 rounded-xl'>

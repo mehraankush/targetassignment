@@ -1,10 +1,10 @@
 import { ChevronDown, Dot } from "lucide-react";
 import Graph from "./Chart";
 
-const ChartDisplay = () =>{
+const ChartDisplay = (graphgdata:Object) =>{
 
     return (
-            <div className="flex flex-col bg-white  mt-10 rounded-xl w-full mx-[70px]">
+            <div className="flex flex-col bg-white  mt-10 rounded-xl w-full md:mx-[70px]">
             
                 <div className="flex justify-between p-5">
                 
@@ -30,7 +30,7 @@ const ChartDisplay = () =>{
               </div>
             
                 <div>
-                    <Graph/>
+                    <Graph graphgdata={graphgdata}/>
                 </div>
             
             </div>

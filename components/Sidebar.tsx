@@ -1,11 +1,12 @@
 "use client"
 
 import Link from "next/link";
-import Image from "next/image";
 import { Montserrat } from 'next/font/google'
-import { usePathname } from 'next/navigation'
+import { redirect, usePathname } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
-import { Tags,UserCircle2, LayoutDashboard, MessageSquare, Settings, CalendarClock } from "lucide-react";
+import { Tags,UserCircle2, LayoutDashboard, MessageSquare, Settings, CalendarClock, LogOut } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 
 const montserrat = Montserrat({weight:'600',subsets:['latin']}) 
 const routes = [
@@ -17,17 +18,17 @@ const routes = [
   {
   lable:"Transactions",
   icon:Tags,
-  href:"/conversation",
+  href:"/transactions",
   },
   {
   lable:"Schedules",
   icon:CalendarClock,
-  href:"/image",
+  href:"/schedules",
   },
   {
   lable:"Users",
   icon:UserCircle2,
-  href:"/video",
+  href:"/users",
   },
   {
   lable:"Settings",
@@ -38,6 +39,11 @@ const routes = [
 
 const SideBar = () => {
 
+  const router = useRouter()
+  const handleLogout = async () => {
+    await signOut();
+    redirect('/')
+  };
 
   const pathname = usePathname();
   return (
@@ -64,6 +70,13 @@ const SideBar = () => {
               ))
              }
           </div>
+          <div className="flex ml-3  items-center mt-2 cursor-pointer">
+            <div className="flex gap-1" onClick={()=>handleLogout()}>
+              <LogOut/>
+              <p className="font-light">Log out</p>
+            </div>
+          </div>
+
           <div className="mt-[13rem] p-2">
              <p className="mb-2">Help</p>
              <p>Contact Us</p>

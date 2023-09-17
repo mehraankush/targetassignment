@@ -1,49 +1,41 @@
-import React from "react";
+"use client"
+import React ,{useEffect, useState} from "react";
 import { LineChart, Line, XAxis, YAxis, Legend, Tooltip, CartesianGrid } from "recharts";
 
-const Graph = () => {
-    const data = [
-        {
-          "name": "Week0",
-          "User": 100,
-          "Guest": 200,
-        //   "amt": 2400
-        },
-        {
-          "name": "Week1",
-          "User": 400,
-          "Guest": 400,
-        //   "amt": 2210
-        },
-        {
-          "name": "Week2",
-          "User": 200,
-          "Guest": 200,
-        //   "amt": 2290
-        },
-        {
-          "name": "Week03",
-          "User": 500,
-          "Guest": 500,
-        //   "amt": 2000
-        },
-        {
-          "name": "Week4",
-          "User": 250,
-          "Guest": 700,
-        //   "amt": 2181
-        },
-        {
-          "name": "Week5",
-          "User": 367,
-          "Guest": 267,
-        //   "amt": 2500
-        }
-      ]
+var data:any = [];
+
+const Graph = (graphgdata:any) => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 576);
+
+     const GrapgAllData =  graphgdata.graphgdata.graphgdata;
+     const GraphData = graphgdata.graphgdata.graphgdata.User;
+     console.log(GraphData)
+
+    if (typeof GraphData === 'object' && GraphData !== null) {
+      const weeks = Object.keys(GraphData);
+      console.log(weeks)
+          data = weeks.map(week => ({
+          "name": week,
+          "User": GrapgAllData.User[week],
+          "Guest": GrapgAllData.Guest[week]
+        }));
+    }
+
+      useEffect(() => {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth < 576);
+        };
+    
+        window.addEventListener("resize", handleResize);
+    
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
 
   return (
-    <div className="p-4">
-        <LineChart width={1000} height={190} data={data}
+    <div className={`p-4 flex justify-center`}>
+        <LineChart width={isMobile?430:1000} height={190} data={data}
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
           <CartesianGrid strokeDasharray="5 5" />
           <XAxis dataKey="name" />

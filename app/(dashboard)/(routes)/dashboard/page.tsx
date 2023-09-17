@@ -1,6 +1,8 @@
 "use client"
 import { useEffect, useState } from "react";
 import { Card } from "@/components/Card";
+import { useSession } from "next-auth/react";
+
 import  Graph  from "@/components/Chart";
 import axios from 'axios'
 import { ChevronDown,ChevronRight, Dot } from 'lucide-react'
@@ -18,20 +20,21 @@ interface Schedule {
   location: string;
 }
 
-const COLORS = ["#f4ecdd","#ddefe0", "#F6DC7D"];
+const COLORS = ["#daf7a6","#fcdef8", "#faa0a0"];
 
 const Page = () => {
-
+ 
   const [cardData,setCardData] = useState<User[]>([]);
   const [schedule,setSchedule] = useState<Schedule[]>([]);
   const [pieChartData, setpieChartData] = useState({})
+  const [graphgdata, setgraphgdata] = useState({})
 
   useEffect(()=>{
     resuestData();
   },[]);
 
   const keys = Object.keys(pieChartData);
-  const values = Object.values(pieChartData);
+  const values:number[] = Object.values(pieChartData);
 
   const resuestData = async()=>{
     try {
@@ -42,8 +45,9 @@ const Page = () => {
       setCardData(data);
       setSchedule(todaySchedule)
       setpieChartData(pieData)
+      setgraphgdata(res.data.chartData);
 
-      console.log('Data:', data);
+      console.log('Data:', grapgdata);
       console.log('Card Data:', cardData);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -53,24 +57,24 @@ const Page = () => {
 
   return (
     <div className="min-h-screen">
-      <div className="flex justify-around mt-5 mx-10">
+      <div className="flex  flex-col md:flex-row md:justify-around mt-5 mx-10">
       {
         cardData?.map((item,i)=>(
-            <Card key={i} title={item.title} value={item.value} Styles={`bg-[${COLORS[i%COLORS.length]}]`}/>
+            <Card key={i} title={item.title} value={item.value} Stylesbg={`${COLORS[i%COLORS.length]}`}/>
         ))
       }
       </div>
 
       {/* graph  */}
       <div className="w-full flex justify-center items-center">
-          <ChartDisplay/>
+          <ChartDisplay graphgdata={graphgdata}/>
       </div>
 
  {/* Bottom Section   */}
       
-      <div className="flex justify-around mt-10 ">
+      <div className="flex flex-col md:flex-row items-center md:justify-around mt-10 ">
          
-         <div className="flex flex-col  bg-white text-black md:p-7 mb-5 rounded-[20px] md:w-[480px] md:h-[256px]">
+         <div className="flex flex-col  md:w-[480px]  bg-white text-black p-7 mb-5 rounded-[20px]  md:h-[256px]">
             <div className="flex justify-between">
                  <h1 className="font-semibold">Top products</h1>
                  <div className="flex gap-1">
@@ -81,7 +85,7 @@ const Page = () => {
 
             <div className="flex mt-5 justify-between">
                <div className="p-2">
-                  <PieCharts/>
+                  <PieCharts values={values}/>
                </div>
                <div className="flex text-black flex-col gap-3 p-3 ">
                {
@@ -91,7 +95,7 @@ const Page = () => {
                          <Dot/>
                          <p>{chart}</p>
                       </div>
-                      <p className="text-xs text-gray-500 md:ml-5">{values[i]}%</p>
+                      <p className="text-xs ml-5  text-gray-500">{values[i]}%</p>
                     </div>
                     ))
                   }
@@ -99,7 +103,7 @@ const Page = () => {
             </div>
          </div>
       {/* second part  */}
-      <div className="flex flex-col bg-white text-black md:p-10 mb-5 rounded-[20px] md:w-[480px] md:h-[256px]">
+      <div className="flex w-full flex-col bg-white text-black p-10 mb-5 md:w-[480px] rounded-[20px] md:h-[256px]">
             <div className="flex justify-between">
                  <h1 className="font-semibold">Today’s schedule</h1>
                  <div className="flex gap-1">
@@ -113,9 +117,9 @@ const Page = () => {
             schedule.map((today,i)=>(
                <div key={i} className="mt-3 border-l-4 border-blue-800">
                 <div className="ml-2">
-                 <p className="text-sm">{today.meetingTitle}</p>
-                 <p className="text-xs">{today.time}</p>
-                 <p className="text-xs">{today.location} </p>
+                 <p className="text-sm font-medium">{today.meetingTitle}</p>
+                 <p className="text-xs text-gray-400">{today.time}</p>
+                 <p className="text-xs text-light">{today.location} </p>
                </div>
              </div>
             ))
