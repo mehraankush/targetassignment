@@ -55,7 +55,7 @@ export default function Home() {
             </div>
 
             <div className='mt-7 text-center'>
-               <p>Dont't have an account? <a className='text-blue-600 cursor-pointer'>Register here</a></p>
+               <p>Dont have an account? <a className='text-blue-600 cursor-pointer'>Register here</a></p>
             </div>
          </div>
         
