@@ -1,17 +1,12 @@
 "use client"
+import { Button } from '@/components/ui/button'
 import { signIn } from 'next-auth/react'
 import Image from 'next/image'
-import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 
 export default function Home() {
 
-   const {data:session} = useSession();
-   const router = useRouter();
-   if(session?.user){
-      router.push('/dashboard')
-   }
 
   return (
     <main className="flex md:flex-row flex-col min-h-screen bg-[#F5F5F5]">
@@ -60,6 +55,11 @@ export default function Home() {
          </div>
         
 
+       </div>
+       <div className='absolute top-3 right-5'>
+         <Link href='/dashboard'>
+         <Button>Dashboard</Button>
+         </Link>
        </div>
 
     </main>

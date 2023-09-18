@@ -49,7 +49,7 @@ const SideBar = () => {
   return (
     <div className="my-5 py-4 ml-10 md:w-60 flex flex-col justify-between md:h-[944px] text-white bg-black rounded-[30px]"> 
        <div className="px-3 py-2 flex-1">
-          <Link href='/dashboard' className="flex items-center pl-3 mb-14 ">
+          <Link href='/' className="flex items-center pl-3 mb-14 ">
               <h1 className={`text-4xl  font-bold`}>Target.</h1>
           </Link>
           <div className="space-y-1">

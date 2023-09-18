@@ -1,16 +1,10 @@
 "use client"
-import { useEffect,useState } from 'react'
 import {Bell, User,Search, Menu } from 'lucide-react'
-import axios from 'axios';
-import { useSession } from 'next-auth/react';
-import Image from 'next/image';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
 import SideBar from './Sidebar';
 
 const Navbar = () => {
-  const {data:session} =useSession();
-  const ima:string | null | undefined = session?.user?.image
   return (
     <div  className='flex text-black md:mx-[70px]'>
       <div className='flex w-[100%] mt-5 justify-between text-black p-2'>
@@ -39,7 +33,7 @@ const Navbar = () => {
 
           <div className='flex gap-3 mt-1'>
             <Bell className='mr-4 md:mr-0'/>
-            <Image src={ima} alt='image' className='rounded-full' width={20} height={10}/>
+            <User/>
           </div>
             
         </div>

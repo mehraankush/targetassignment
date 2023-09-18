@@ -47,7 +47,7 @@ const Page = () => {
       setpieChartData(pieData)
       setgraphgdata(res.data.chartData);
 
-      console.log('Data:', grapgdata);
+      // console.log('Data:', grapgdata);
       console.log('Card Data:', cardData);
     } catch (error) {
       console.error('Error fetching data:', error);
