@@ -5,7 +5,7 @@ import { LineChart, Line, XAxis, YAxis, Legend, Tooltip, CartesianGrid } from "r
 var data:any = [];
 
 const Graph = (graphgdata:any) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 576);
+  const [isMobile, setIsMobile] = useState(false);
 
      const GrapgAllData =  graphgdata.graphgdata.graphgdata;
      const GraphData = graphgdata.graphgdata.graphgdata.User;
